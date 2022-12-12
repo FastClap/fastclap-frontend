@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 import { fromRange } from 'xpath-range';
+import { Rangy } from 'rangy';
 
 import parse, { HTMLReactParserOptions, Element } from 'html-react-parser';
 
@@ -20,16 +21,6 @@ function App() {
 
   const stringToParse =
     '      1. INT. NUIT. CHAMBRE/ APPARTEMENT PARISIEN.\n\nRaphaëlle, dite Raf, visage de caractère, 50 ans, a les yeux\ngrands ouverts. On sent qu’elle n’arrive pas à dormir. Elle se\ntourne, se retourne, dans son lit.\nElle attrape son téléphone portable sur la table de chevet,\nconsulte l’écran : il est 5 heures 30. Elle se redresse, puis\nécrit à toute vitesse un texto :\n\n                        RAF\n         On a passé dix ans ensemble. DIX ans. On\n         parle de se séparer et toi ça te fait ni\n         chaud ni froid. T’es vraiment une salope.\n\nElle efface les deux derniers mots et écrit à la place :\n« dégueulasse » puis efface à nouveau et écrit « dure » puis\n« très dure ». Elle envoie le texto. On entend une vibration\nde bip de téléphone de l’autre côté du lit.\nRaf enchaîne aussi sec et en envoie un autre.\n\n                        RAF\n         T’en as vraiment rien à foutre de notre\n         histoire ! C’est ça ?\n\nOn entend de nouveau des petits bruits de réception de textos.\nRaf, déterminée, continue sans trop réfléchir.\n\n                        RAF\n         T’as pas de sentiments. T’es horrible.\n\nRaf, entrainée par l’ivresse des textos, enchaîne.\n\n                        RAF\n         Je me demande comment j’ai pu rester avec\n         toi aussi longtemps sans m’en rendre\n         compte.\n\nElle renvoie un texto rageur. On entend de nouveau la petite\nvibration du texto qui vient d’arriver.\nRaf se penche alors de l’autre côté du lit.\nOn découvre une touffe de cheveux semblant appartenir à la\ndestinataire des messages.\n\n                        RAF\n         Comment tu fais pour aussi bien dormir ?\n\n\n\n\n                                                             1\n\f';
-
-  const options: HTMLReactParserOptions = {
-    replace: (domNode) => {
-      console.log(domNode);
-      if (domNode instanceof Element && domNode.attribs) {
-        console.log('Hey !!');
-        console.log('domNode', domNode);
-      }
-    }
-  };
 
   function surroundSelection() {
     const span = document.createElement('span');
@@ -104,7 +95,7 @@ function App() {
 
   return (
     <div className="App">
-      <div onMouseUp={surroundSelection}>{parse(stringToParse, options)}</div>
+      <div onMouseUp={surroundSelection}>{stringToParse}</div>
     </div>
   );
 }
